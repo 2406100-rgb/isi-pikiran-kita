@@ -1,0 +1,14 @@
+{
+  "name": "isi-pikiran-kita",
+  "version": "1.0.0",
+  "description": "Isi Pikiran Kita - ruang catatan bersama dengan database SQLite",
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server.js"
+  }
+}

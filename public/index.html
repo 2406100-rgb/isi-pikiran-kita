@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Isi Pikiran Kita | Ruang Catatan Bersama</title>
+  <link rel="icon" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+
+  <!-- ============ LOGIN / DAFTAR ============ -->
+  <main id="authView" class="auth" hidden>
+    <section class="auth-card">
+      <div class="brand-mark">🌿</div>
+      <h1 class="serif">Isi Pikiran Kita</h1>
+      <p class="muted">Ruang tenang untuk menaruh isi kepala, bersama atau sendiri.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" data-mode="login" type="button">Masuk</button>
+        <button class="tab" data-mode="register" type="button">Daftar</button>
+      </div>
+
+      <h2 id="authTitle" class="serif">Hai, apa kabar pikiranmu hari ini?</h2>
+
+      <form id="authForm" autocomplete="off">
+        <label class="field">
+          <span>Nama pengguna</span>
+          <input id="username" type="text" placeholder="contoh: dina" required minlength="3" />
+        </label>
+        <label class="field">
+          <span>Kata sandi</span>
+          <div class="pw">
+            <input id="password" type="password" placeholder="Minimal 6 karakter" required minlength="6" />
+            <button id="togglePw" type="button" class="ghost-icon" aria-label="Tampilkan sandi">👁</button>
+          </div>
+        </label>
+        <p id="authError" class="error" hidden></p>
+        <button id="authSubmit" class="btn primary block" type="submit">Mulai menulis</button>
+      </form>
+
+      <div class="demo">
+        <span class="muted small">Cuma mau lihat-lihat?</span>
+        <div class="demo-btns">
+          <button class="chip" type="button" data-demo="dina">Coba sebagai Dina</button>
+          <button class="chip" type="button" data-demo="raka">Coba sebagai Raka</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ BERANDA ============ -->
+  <div id="appView" hidden>
+    <header class="topbar">
+      <div class="logo"><span class="logo-leaf">🌿</span><span class="serif">Isi Pikiran Kita</span></div>
+      <div class="top-actions">
+        <button id="themeBtn" class="ghost-icon" type="button" aria-label="Ganti tema">🌙</button>
+        <div class="me"><span id="avatar" class="avatar">A</span><span id="meName">Aku</span></div>
+        <button id="logoutBtn" class="btn ghost" type="button">Keluar</button>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hello">
+        <h1 id="greeting" class="serif">Selamat malam</h1>
+        <p id="statLine" class="muted"></p>
+      </section>
+
+      <!-- Kotak tulis -->
+      <form id="composer" class="composer" autocomplete="off">
+        <input id="cTitle" class="c-title" type="text" placeholder="Judul (boleh kosong)" maxlength="80" hidden />
+        <textarea id="cContent" rows="1" placeholder="Lagi mikirin apa hari ini?"></textarea>
+
+        <div id="cExtra" class="c-extra" hidden>
+          <div class="c-row">
+            <select id="cCategory" aria-label="Kategori"></select>
+            <label class="switch">
+              <input id="cPrivate" type="checkbox" />
+              <span>🔒 Simpan pribadi</span>
+            </label>
+          </div>
+          <div class="c-row">
+            <span class="small muted">Perasaanmu:</span>
+            <div id="moodPick" class="moods"></div>
+          </div>
+          <div class="c-row end">
+            <button id="cCancel" class="btn ghost" type="button">Batal</button>
+            <button id="cSave" class="btn primary" type="submit">Simpan pikiran</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Filter -->
+      <section class="filters">
+        <div class="seg">
+          <button class="seg-btn is-active" data-scope="all" type="button">Semua</button>
+          <button class="seg-btn" data-scope="mine" type="button">Milik saya</button>
+        </div>
+        <select id="fCategory" aria-label="Filter kategori"></select>
+        <input id="fSearch" type="search" placeholder="Cari judul atau isi..." />
+      </section>
+
+      <!-- Daftar -->
+      <section id="list" class="masonry"></section>
+      <div id="empty" class="empty" hidden>
+        <div class="empty-emoji">🍃</div>
+        <p class="serif">Masih sepi di sini.</p>
+        <p class="muted small">Tulis satu hal yang sedang kamu pikirkan, sekecil apa pun.</p>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
